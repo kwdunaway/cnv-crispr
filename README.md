@@ -8,15 +8,15 @@ In order to complete the task, you must first download the following data:
 
 1. CNV data: The CNV data used in this pipeline came from cancer.sanger.ac.uk. They have a vast repository of cell line data including CNV information on the A375 melanoma cell line. In order to download the data, you must first register a username at [COSMIC](https://cancer.sanger.ac.uk/cosmic/register). Then, type the following in terminal to get the CNV data on A375 melanoma cell line:
 
-```
-sftp username@sftp-cancer.sanger.ac.uk
-```
-(must enter password here)
+	```
+	sftp username@sftp-cancer.sanger.ac.uk
+	```
+	(must enter password here)
 
-```
-sftp> get /files/grch38/cell_lines/v76/copy_number/906793.csv
-sftp> exit
-```
+	```
+	sftp> get /files/grch38/cell_lines/v76/copy_number/906793.csv
+	sftp> exit
+	```
 
 2. Off-target data: Off-target activity is an active interest of Desktop Genetics so this pipeline includes that information. The off-target scores of all probes can be found in Supplementary table 1 of the original published paper [Shalem et al. 2014](http://www.ncbi.nlm.nih.gov/pubmed/24336571). The data is in excel format and needs to be converted to tab separated format. To do this, open the file in excel and save as a "Tab Delimited Text (*.txt)".
 
@@ -29,7 +29,7 @@ tr '\r' '\n' < oldfilename > newfilename
 ```
 
 ## Pipeline
-In order to make a full CNV table from the provided CRISPR 'crispr_guide_data_mac.tsv' file, use the following pipeline:
+In order to make a full CNV table from the provided CRISPR `crispr_guide_data_mac.tsv` file, use the following pipeline:
 
 1. Create a FASTA file from the guide sequences using TSV_to_FASTA.py. For this example, use:
 
