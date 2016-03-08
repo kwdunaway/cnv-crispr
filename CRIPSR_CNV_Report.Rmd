@@ -13,7 +13,7 @@ Using CRISPR library data supplied and Copy Number Variation (CNV) data of your 
 
 The data provided came from the GeCKO experiment found in Shalem et al. 2014. Briefly, 64,751 unique sgRNAs (on Lentiviral expression vectors) targeting 18,080 coding genes were inserted into a population of A375 melanoma cells. The concentration of exposure was such that it optimized adding only one Lentiviral expression vector per cell. The population was then allow to grow for 7 and 14 days after transduction in the presense and absense of PLX treatment. There were two biological replicates for each condition except the starting condition (which was only one). Once harvested, the sgRNAs were isolated and sequenced.
 
-Since the sgRNAs would target coding regions which would create indels, those corresponding genes would become disfunctional, leading to a Knockout of the gene. The number of reads corresponding to essential genes decreased in the control day 7 and 14 populations compared to other genes. This was because since the essential genes were knocked out, those cells would die, decreasing the population of cells with the corresponding sgRNAs. In the PTX experiment, if the number of reads aligning to a gene increased over time, the assumption being that knocking out those genes leads to a resistance to the PTX drug.
+Since the sgRNAs would target coding regions which would create indels, those corresponding genes would become disfunctional, leading to a knock out of the gene. The number of reads corresponding to essential genes decreased in the control day 7 and 14 populations compared to other genes. This was because since the essential genes were knocked out, those cells would die, decreasing the population of cells with the corresponding sgRNAs. In the PTX experiment, if the number of reads that aligned to a gene increased over time, the assumption would be that if you knock out those genes, the cells would become resistance to the PTX drug.
 
 My job was to determine if there was a Copy Number Variation effect on the experiment. The A375 melanoma cell has 62 chromosomes (normal human cells have 46) with a vast array of large scale CNVs. I found the locations of these CNVs through **C**atalogue **o**f **S**omatic **M**utations **i**n **C**ancer (COSMIC) which can be found at cancer.sanger.ac.uk. It is a website maintained by Wellcome Trust Sanger Institute, a research institute governed by the registered charity and legal entity Genome Research Limited (GRL).
 
@@ -121,7 +121,7 @@ ggplot(data = df.m, aes(x=variable, y=value)) + theme_bw() +
 
 ### Statistical Analysis using MANOVA
 
-While graphin the data can show us striking differences, a statistical test will determine if there are actually differences due to ploidy. Since there a relatively large amount of data points and the data is not expected to be normally distributed, I chose to use a multivariate analysis of variance (MANOVA).
+While graphing the data can show us striking differences, a statistical test will determine if there are actually differences due to ploidy. Since there is a relatively large amount of data points and the data is not expected to be normally distributed, I chose to use a multivariate analysis of variance (MANOVA).
 
 ```{r}
 fit <- manova(cbind(D7R1,D7R2,D14R1,D14R2,PLX7R1,PLX7R2,PLX14R1,PLX14R2) ~ as.factor(CNVcount), data = CNVtable_23x)

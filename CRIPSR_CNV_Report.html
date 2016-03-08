@@ -65,7 +65,7 @@ if (window.hljs && document.readyState && document.readyState === "complete") {
 <div id="background" class="section level2">
 <h2>Background</h2>
 <p>The data provided came from the GeCKO experiment found in Shalem et al. 2014. Briefly, 64,751 unique sgRNAs (on Lentiviral expression vectors) targeting 18,080 coding genes were inserted into a population of A375 melanoma cells. The concentration of exposure was such that it optimized adding only one Lentiviral expression vector per cell. The population was then allow to grow for 7 and 14 days after transduction in the presense and absense of PLX treatment. There were two biological replicates for each condition except the starting condition (which was only one). Once harvested, the sgRNAs were isolated and sequenced.</p>
-<p>Since the sgRNAs would target coding regions which would create indels, those corresponding genes would become disfunctional, leading to a Knockout of the gene. The number of reads corresponding to essential genes decreased in the control day 7 and 14 populations compared to other genes. This was because since the essential genes were knocked out, those cells would die, decreasing the population of cells with the corresponding sgRNAs. In the PTX experiment, if the number of reads aligning to a gene increased over time, the assumption being that knocking out those genes leads to a resistance to the PTX drug.</p>
+<p>Since the sgRNAs would target coding regions which would create indels, those corresponding genes would become disfunctional, leading to a knock out of the gene. The number of reads corresponding to essential genes decreased in the control day 7 and 14 populations compared to other genes. This was because since the essential genes were knocked out, those cells would die, decreasing the population of cells with the corresponding sgRNAs. In the PTX experiment, if the number of reads that aligned to a gene increased over time, the assumption would be that if you knock out those genes, the cells would become resistance to the PTX drug.</p>
 <p>My job was to determine if there was a Copy Number Variation effect on the experiment. The A375 melanoma cell has 62 chromosomes (normal human cells have 46) with a vast array of large scale CNVs. I found the locations of these CNVs through <strong>C</strong>atalogue <strong>o</strong>f <strong>S</strong>omatic <strong>M</strong>utations <strong>i</strong>n <strong>C</strong>ancer (COSMIC) which can be found at cancer.sanger.ac.uk. It is a website maintained by Wellcome Trust Sanger Institute, a research institute governed by the registered charity and legal entity Genome Research Limited (GRL).</p>
 </div>
 <div id="libraries-functions-and-loading-data" class="section level2">
@@ -120,7 +120,7 @@ OStable = read.table(&quot;data/Shalem_2014Table_S1.tsv&quot;, header = TRUE, se
 </div>
 <div id="statistical-analysis-using-manova" class="section level3">
 <h3>Statistical Analysis using MANOVA</h3>
-<p>While graphin the data can show us striking differences, a statistical test will determine if there are actually differences due to ploidy. Since there a relatively large amount of data points and the data is not expected to be normally distributed, I chose to use a multivariate analysis of variance (MANOVA).</p>
+<p>While graphing the data can show us striking differences, a statistical test will determine if there are actually differences due to ploidy. Since there is a relatively large amount of data points and the data is not expected to be normally distributed, I chose to use a multivariate analysis of variance (MANOVA).</p>
 <pre class="r"><code>fit &lt;- manova(cbind(D7R1,D7R2,D14R1,D14R2,PLX7R1,PLX7R2,PLX14R1,PLX14R2) ~ as.factor(CNVcount), data = CNVtable_23x)
 summary(fit, test=&quot;Pillai&quot;)</code></pre>
 <pre><code>##                        Df    Pillai approx F num Df den Df    Pr(&gt;F)    
@@ -133,7 +133,7 @@ summary(fit, test=&quot;Pillai&quot;)</code></pre>
 fit &lt;- manova(cbind(D7R1,D7R2,D14R1,D14R2,PLX7R1,PLX7R2,PLX14R1,PLX14R2) ~ as.factor(flips), data = CNVtable_23x)
 summary(fit, test=&quot;Pillai&quot;)</code></pre>
 <pre><code>##                     Df     Pillai approx F num Df den Df Pr(&gt;F)
-## as.factor(flips)     1 0.00010457  0.77935      8  59616 0.6209
+## as.factor(flips)     1 0.00010951  0.81614      8  59616 0.5882
 ## Residuals        59623</code></pre>
 </div>
 <div id="off-target-scores" class="section level3">
