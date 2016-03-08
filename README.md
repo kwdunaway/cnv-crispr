@@ -52,7 +52,5 @@ In order to make a full CNV table from the provided CRISPR `crispr_guide_data_ma
 
 Once created, the user can further analyze the CNV table using the provided R code as well as custom analyses in R, Python, or Excel. An example command code to run this script: 
 
-	```
 	python make_CNV_table.py -s data/guide_sequences.sam -c data/A375_CNV.csv -g data/crispr_guide_data_mac.tsv -t data/Shalem_2014Table_S1.tsv -o data/CNV_guide_table.tsv 
-	```
 
