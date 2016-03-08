@@ -9,9 +9,7 @@ In order to complete the task, you must first download the following data:
 1. CNV data: The CNV data used in this pipeline came from cancer.sanger.ac.uk. They have a vast repository of cell line data including CNV information on the A375 melanoma cell line. In order to download the data, you must first register a username at [COSMIC](https://cancer.sanger.ac.uk/cosmic/register). Then, type the following in terminal to get the CNV data on A375 melanoma cell line:
 
 	sftp username@sftp-cancer.sanger.ac.uk
-
-(must enter password here)
-
+	(must enter password here)
 	sftp> get /files/grch38/cell_lines/v76/copy_number/906793.csv
 	sftp> exit
 
