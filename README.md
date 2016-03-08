@@ -20,12 +20,12 @@ In order to complete the task, you must first download the following data:
 
 2. **Off-target data**: Off-target activity is an active interest of Desktop Genetics so this pipeline includes that information. The off-target scores of all probes can be found in Supplementary Table 1 of the original published paper [Shalem et al. 2014](http://www.ncbi.nlm.nih.gov/pubmed/24336571). The data is in excel format and needs to be converted to tab separated format. To do this, open the file in excel and save as a "Tab Delimited Text (*.txt)".
 
-3. **Genome**: This pipeline assumes you are working with hg38 build of the human genome (latest build as of 3/5/2016). For the purposes of this pipeline, I used bowtie. However, you can substitue another aligner as long as the input accepts FASTA files and the output is in SAM format.
+3. **Genome**: This pipeline assumes you are working with hg38 build of the human genome. For the purposes of this pipeline, I used bowtie. However, you can substitute another aligner as long as the input accepts FASTA files and the output is in SAM format.
 
 ## Pipeline
 In order to make a full CNV table from the provided CRISPR `crispr_guide_data_mac.tsv` file, use the following pipeline:
 
-1. **PC to MAC conversion**: This pipeline also assumes all of the files are in mac/unix format. This means you must convert any non-mac formatted files before running. To do this, use the command:
+1. **PC to MAC conversion**: This pipeline assumes all of the files are in MAC/Unix format. This means you must convert any PC formatted files before running. To do this, use the command:
 
 	```
 	tr '\r' '\n' < oldfilename > newfilename
@@ -43,7 +43,7 @@ In order to make a full CNV table from the provided CRISPR `crispr_guide_data_ma
 	bowtie -f -S ~/genomes/hg38/hg38 guide_sequences.fa guide_sequences.sam
 	```
 
-4. **Create CNV table**: Creating the tab-separated CNV table required four input files:
+4. **Create CNV table**: Creating the tab-separated CNV table requires four input files:
 
 	* Aligned Guide Sequences SAM file
 	* A375 Copy Number Variation .csv file
