@@ -27,32 +27,32 @@ In order to make a full CNV table from the provided CRISPR `crispr_guide_data_ma
 
 1. **PC to MAC conversion**: This pipeline also assumes all of the files are in mac/unix format. This means you must convert any non-mac formatted files before running. To do this, use the command:
 
-```
-tr '\r' '\n' < oldfilename > newfilename
-```
+	```
+	tr '\r' '\n' < oldfilename > newfilename
+	```
 
 2. **Create FASTA file**: In order to create a FASTA file from the guide sequences, use `TSV_to_FASTA.py`. In the dataset provided, use the following command:
 
-```
-python TSV_to_FASTA.py -i data/crispr_guide_data_mac.tsv -o data/guide_sequences.fa
-```
+	```
+	python TSV_to_FASTA.py -i data/crispr_guide_data_mac.tsv -o data/guide_sequences.fa
+	```
 
 3. **Align FASTA file**: Aligning the FASTA file allows you to determine location of all guide sequences. You may have your own aligner for this step. I used bowtie and hg38 build with the following parameters:
 
-```
-bowtie -f -S ~/genomes/hg38/hg38 guide_sequences.fa guide_sequences.sam
-```
+	```
+	bowtie -f -S ~/genomes/hg38/hg38 guide_sequences.fa guide_sequences.sam
+	```
 
 4. **Create CNV table**: Creating the tab-separated CNV table required four input files:
 
-⋅⋅1. Aligned Guide Sequences SAM file
-⋅⋅2. A375 Copy Number Variation .csv file
-⋅⋅3. The original `crispr_guide_data.tsv` (MAC/Unix converted)
-⋅⋅4. Off-target scores in .tsv format, found in [Shalem et al. 2014](http://www.ncbi.nlm.nih.gov/pubmed/24336571) Supplementary Table 1.
+	1. Aligned Guide Sequences SAM file
+	2. A375 Copy Number Variation .csv file
+	3. The original `crispr_guide_data.tsv` (MAC/Unix converted)
+	4. Off-target scores in .tsv format, found in [Shalem et al. 2014](http://www.ncbi.nlm.nih.gov/pubmed/24336571) Supplementary Table 1.
 
 Once created, the user can further analyze the CNV table using the provided R code as well as custom analyses in R, Python, or Excel. An example command code to run this script: 
 
-```
-python make_CNV_table.py -s data/guide_sequences.sam -c data/A375_CNV.csv -g data/crispr_guide_data_mac.tsv -t data/Shalem_2014Table_S1.tsv -o data/CNV_guide_table.tsv 
-```
+	```
+	python make_CNV_table.py -s data/guide_sequences.sam -c data/A375_CNV.csv -g data/crispr_guide_data_mac.tsv -t data/Shalem_2014Table_S1.tsv -o data/CNV_guide_table.tsv 
+	```
 
