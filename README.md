@@ -46,9 +46,9 @@ bowtie -f -S ~/genomes/hg38/hg38 guide_sequences.fa guide_sequences.sam
 4. **Create CNV table**: Creating the tab-separated CNV table required four input files:
 
 ⋅⋅1. Aligned Guide Sequences SAM file
-..2. A375 Copy Number Variation .csv file
-..3. The original `crispr_guide_data.tsv` (MAC/Unix converted)
-..4. Off-target scores in .tsv format, found in [Shalem et al. 2014](http://www.ncbi.nlm.nih.gov/pubmed/24336571) Supplementary Table 1.
+⋅⋅2. A375 Copy Number Variation .csv file
+⋅⋅3. The original `crispr_guide_data.tsv` (MAC/Unix converted)
+⋅⋅4. Off-target scores in .tsv format, found in [Shalem et al. 2014](http://www.ncbi.nlm.nih.gov/pubmed/24336571) Supplementary Table 1.
 
 Once created, the user can further analyze the CNV table using the provided R code as well as custom analyses in R, Python, or Excel. An example command code to run this script: 
 
