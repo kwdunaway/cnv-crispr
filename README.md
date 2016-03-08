@@ -11,7 +11,7 @@ In order to complete the task, you must first download the following data:
 ```
 sftp username@sftp-cancer.sanger.ac.uk
 ```
-	(must enter password here)
+(must enter password here)
 
 ```
 sftp> get /files/grch38/cell_lines/v76/copy_number/906793.csv
